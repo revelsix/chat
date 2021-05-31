@@ -36,7 +36,7 @@ const setupMessages = (data) => {
     data.forEach(doc => {
         const message = doc.data('message');
         const div = `
-            <div>${firebase.auth().currentUser.displayName}: ${message.message}</div>
+            <div>${message.username}: ${message.message}</div>
         `;
         html += div;
     });

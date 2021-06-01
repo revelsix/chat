@@ -12,7 +12,7 @@ const setupUI = (user) => {
             const html = `
             <div>Logged in as ${user.email}</div>
             <div>Bio: ${doc.data().bio}</div>
-            <div>Username: ${doc.data().displayName}</div>
+            <div>Username: ${user.displayName}</div>
             `;
             accountDetails.innerHTML = html;
         });

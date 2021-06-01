@@ -75,5 +75,9 @@ document.addEventListener('DOMContentLoaded', function(){
     var items = document.querySelectorAll('.collapsible');
     M.Collapsible.init(items);
 
+    //THIS DOESNT WORK EITHER
+    let element = document.querySelector("#chat-container");
+    element.scrollIntoView({block: "end"});
+
 });
 

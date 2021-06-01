@@ -89,14 +89,15 @@
 
   <!-- CHAT WINDOW -->
   <div id="chat-container" style="color:white; display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; bottom:0; left:0;">
-    <div class="chat-box" style="padding:10px;" tabindex="0">
+    <div id="chat-lines" class="chat-box" style="padding:10px 10px 140px; position: relative;" tabindex="0">
       
     </div>
-    <div id="message-box" style="color:white; position: fixed; bottom: 0; left: 0; padding: 0px 20px 30px; width: 100%; z-index: 0; background-color: rgb(24, 23 ,23);">
+    <form id="message-box" style="color:white; position: fixed; bottom: 0; left: 0; padding: 0px 20px 30px; width: 100%; z-index: 0; background-color: rgb(24, 23 ,23);">
       <div class="input-field">
-        <textarea id="message-content" placeholder="Enter a message!" class="materialize-textarea" style="color:white;" onkeypress="onEvent(event)"></textarea>
+        <textarea id="message-content" class="materialize-textarea" style="color:white;" onkeypress="onEvent(event)"></textarea>
+        <label for="message-content">Enter a message!</label>
       </div>  
-    </div>
+    </form>
   </div>
 
 

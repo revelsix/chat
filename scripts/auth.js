@@ -1,12 +1,7 @@
-
-
 //listen for auth status changes
 auth.onAuthStateChanged(user => {
     if(user){
         // get data (onSnapshot sets up a realtime listener)
-        // db.collection('guides').onSnapshot(snapshot => {
-        // setupGuides(snapshot.docs);
-        // });
         setupUI(user);
     } else {
         //setupGuides([]);
@@ -14,27 +9,11 @@ auth.onAuthStateChanged(user => {
     }
     db.collection('message').orderBy('sort').onSnapshot(snapshot => {
         setupMessages(snapshot.docs);
+        //THIS DOESNT WORK, FIX IT WHEN YOU GET BACK
+        var element = document.querySelector("#chat-container");
+        element.scrollIntoView({block: "end"});
     })
 });
-
-//create new guide
-// const createForm = document.querySelector('#create-form');
-// createForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-
-//     db.collection('guides').add({
-//         title: createForm['title'].value,
-//         content: createForm['content'].value
-//     }).then(() => {
-//         //close modal and reset form
-//         const modal = document.querySelector('#modal-create');
-//         M.Modal.getInstance(modal).close();
-//         createForm.reset();
-
-//     }).catch(err => {
-//         console.log(err.message);
-//     })
-// });
 
 //submit chat message to server
 const messageBox = document.querySelector('#message-box');
@@ -47,7 +26,6 @@ const sendMessage = () => {
             sort: firebase.firestore.FieldValue.serverTimestamp(),
             username: firebase.auth().currentUser.displayName,
             message: messageBox['message-content'].value,
-            //email: auth.user.email
         });
     } else {
         console.log('you are fucking stupid');

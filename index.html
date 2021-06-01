@@ -11,7 +11,7 @@
   <body style="background-color: rgb(24, 23, 23);">
   
   <!-- NAVBAR -->
-  <nav class="z-depth-0 grey darken-4">
+  <nav class="grey darken-4" style="position: sticky; top:0; width: 100%; z-index: 2;">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">
         RevelSix
@@ -86,23 +86,17 @@
   </div>
 
 
-    <!-- GUIDE LIST -->
-  <!-- <div class="container" style="margin-top: 40px;">
-    <ul class="collapsible z-depth-0 guides" style="border: none;">
-  
-    </ul>
-  </div> -->
 
-  <div class="chat-container" style="color:white; display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; bottom:0; left:0;">
-    <div class="chat-box" style="padding:10px;">
+  <!-- CHAT WINDOW -->
+  <div id="chat-container" style="color:white; display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; bottom:0; left:0;">
+    <div class="chat-box" style="padding:10px;" tabindex="0">
       
     </div>
-    <form id="message-box" style="color:white; position: fixed; bottom: 0; left: 0; padding: 20px; width: 100%;">
+    <div id="message-box" style="color:white; position: fixed; bottom: 0; left: 0; padding: 0px 20px 30px; width: 100%; z-index: 0; background-color: rgb(24, 23 ,23);">
       <div class="input-field">
-        <textarea id="message-content" class="materialize-textarea" style="color:white;" onkeypress="onEvent(event)"></textarea>
-        <label for="message-content">Enter a message!</label>
+        <textarea id="message-content" placeholder="Enter a message!" class="materialize-textarea" style="color:white;" onkeypress="onEvent(event)"></textarea>
       </div>  
-    </form>
+    </div>
   </div>
 
 

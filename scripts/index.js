@@ -13,6 +13,7 @@ const setupUI = (user) => {
             <div>Logged in as ${user.email}</div>
             <div>Bio: ${doc.data().bio}</div>
             <div>Username: ${user.displayName}</div>
+            <div>Moderator status: ${doc.data().isModerator}</div>
             `;
             accountDetails.innerHTML = html;
         });
@@ -36,34 +37,35 @@ const setupMessages = (data) => {
     data.forEach(doc => {
         const message = doc.data('message');
         const div = `
-            <div>${message.username}: ${message.message}</div>
+            <div><span class=\"${getFlairs(message)}\">${message.username}</span><span>: ${message.message}</span></div>
         `;
         html += div;
     });
     chatBox.innerHTML = html;
 }
 
-//setup guides
-// const setupGuides = (data) => {
+//gets the flairs of a user
+function getFlairs(message){
+    var user = db.collection("users").doc(message.uid);
+    let flairs;
+    user.get().then((doc) =>{
+        console.log(doc.data().isUser);
+        if(doc.data().isUser){
+            flairs += "user ";
+            console.log(doc.data().isUser);
+        }
+        if(doc.data().isModerator){
+            flairs += "moderator ";
+            console.log(doc.data().isModerator);
+        }
+        if(doc.data().isBroadcaster){
+            flairs += "broadcaster ";
+            console.log(doc.data().isBroadcaster);
 
-//     if(data.length){
-//         let html = '';
-//         data.forEach(doc => {
-//             const guide = doc.data();
-//             const li = `
-//             <li>
-//                 <div class="collapsible-header grey lighten-4">${guide.title}</div>
-//                 <div class="collapsible-body whtie">${guide.content}</div>
-//             </li>
-//             `;
-//             html += li;
-//         });
-
-//         guideList.innerHTML = html;
-//     } else {
-//         guideList.innerHTML = '<h5 class="center-align">Login to view guides!</h5>'
-//     }
-// }
+        }
+    });
+    return flairs;
+}
 
 
 //setup materialize components

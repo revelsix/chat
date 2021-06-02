@@ -25,6 +25,7 @@ const sendMessage = () => {
         db.collection('message').add({
             sort: firebase.firestore.FieldValue.serverTimestamp(),
             username: firebase.auth().currentUser.displayName,
+            uid: user.uid,
             message: messageBox['message-content'].value,
         });
     } else {
@@ -59,6 +60,8 @@ signupForm.addEventListener('submit', (e) => {
         });
         return db.collection('users').doc(cred.user.uid).set({
             bio: signupForm['signup-bio'].value,
+            isModerator: false,
+            isUser: true
         });
     }).then(() => {
         const modal = document.querySelector('#modal-signup');
